@@ -16,4 +16,4 @@
 > Promise新建后立即执行，首先输出的是promise，然后then 方法指定的回调函数，将在当前脚本所有同步任务执行完才会执行，所以resolved最后输出
 - Promise的错误会具有冒泡的性质，会一直向后传递，直到被捕获为止，也就是错误总会被下一个catch语句捕获
 - Promise内部的错误不会影响Promise外部的代码
-- 
+- js中indexof方法底层使用===来进行判断，所以当数组中存在NaN时会出线[NaN,1].indexOf(NaN)=-1
