@@ -8,3 +8,4 @@
     display: block;
 }
 ```
+* 在设置posotion为fixed的时候不写top或者left的时候在IE和Safari浏览器中不能正常显示
