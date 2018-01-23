@@ -21,9 +21,9 @@ console.log('Hi!');
 * Promise 的错误会具有冒泡的性质，会一直向后传递，直到被捕获为止，也就是错误总会被下一个 catch 语句捕获
 * Promise 内部的错误不会影响 Promise 外部的代码
 * js 中 indexof 方法底层使用===来进行判断，所以当数组中存在 NaN 时会出线[NaN,1].indexOf(NaN)=-1
-* Event Loop，需要区分 task 和 microtask 两种不同的概念。task包括settimeout、setinterval、setimmediate、I／O、UI交互事件；
+* js是单线程语言，所以引入event loop（事件循环）解释js运行机制。Event Loop，需要区分 task 和 microtask 两种不同的概念。task包括settimeout、setinterval、setimmediate、I／O、UI交互事件；
 microtask包括promise、process.nextTick、mutationObserve
-* MutationObserver 是为开发者提供的  一种能在某个特定的范围内的 DOM 树发生变化时做出适当反应的能力。在回调函数中设置对应的动作。
+* MutationObserver 是为开发者提供的一种能在某个特定的范围内的 DOM 树发生变化时做出适当反应的能力。在回调函数中设置对应的动作。
 
 ```js
 // 选择目标节点
