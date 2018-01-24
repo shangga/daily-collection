@@ -46,3 +46,4 @@ observer.observe(target, config);
 observer.disconnect();
 ```
 > 每次target发生变化都会触发回调函数callback
+* websocket
