@@ -17,3 +17,16 @@
     *  如果一个元素为absolute一个元素为正常元素，那么需要将正常元素的z-index设置为正值，浮动元素的z-index设置为负值才能实现覆盖
     *  总的来说想让元素之间相互遮挡，应该让一个元素的z-index为负值，一个为正值最为有效
     *  需要探究z-index与position之间的相互影响
+
+* sass的import机制
+    - 如果有sass或者scss文件引入，但是不希望被编译为一个css文件，那么这时可以在文件名前面加一个下划线，就能避免被编译。然后可以像往常一样引入文件，还可以省略掉文件名前面的下划线。 
+    ```scss
+    @import "colors";
+    // 等于引入了_colors.scss文件
+    ```
+    - @import 可以引入多个文件
+    ```scss
+    @import "rounded-corners", "text-shadow";
+    // 等于引入了rounded-corners 和 text-shadow 两个文件。
+    ```
+    > 在同一个目录不能同时存在带下划线和不带下划线的同名文件。
