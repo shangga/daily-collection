@@ -51,5 +51,5 @@ observer.disconnect();
 
 * 对象属性循环方法的区别
     * for...in 循环会遍历原型链上所有可枚举属性
-    * Object.key()遍历自身全部可美枚举属性
-    * Object.getOwnPropertyNames()遍历自身所有属性的属性名
+    * Object.key()遍历自身全部可美枚举属性（返回一个数组）
+    * Object.getOwnPropertyNames()遍历自身所有属性的属性名(返回一个数组)
