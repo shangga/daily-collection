@@ -65,7 +65,7 @@
         ```
     ````
 *   oppo手机不支持垂直方向的flex－direction，小米2手机不支持main标签，遇到不支持main标签的情况应该手动设置main标签display为block
-
+*   linear gradient 渐变： 实际上是浏览器根据gradient语法生成图片，由于是image所以当gradient用在background上的时候实际上是写在background-image属性
 树与梦
 
 我站在一棵树下背着  沉重的背包阳光透过树地上洒落着无数的光斑像  曾经的梦想
