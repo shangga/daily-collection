@@ -51,3 +51,9 @@
 - 对未来更新的后的视图进行操作，将需要执行的函数传递给this.$nextTick方法
 - 涉及到js中EventLoop的运行机制
 - 
+
+## keep-alive
+- 实现：created和destoryed钩子函数，会创建一个cache对象，用来作为缓存容器，保存vnode节点（可以理解为javascript对象保存起来的节点，包含tag，name，class，parent，children等节点信息）
+- 然后是render函数的操作，首先通过getFirstComponentChild获取一个子组件，获取该组件的name（存在组件名则直接使用组件名，否则会使用tag）。接下来会将这个name通过include与exclude属性进行匹配，匹配不成功（说明不需要进行缓存）则不进行任何操作直接返回vnode
+- watch会调用purneCache监听include和exclude属性改变，在改变的时候修改cache缓存中的缓存数据。purneCache会遍历cache中所有项，如果不符合filte指定的规则的话，则会执行purneCacheEntry，purneCacheEntry会调用组件实例的$destory方法将组件销毁
+- Vue.js内部将DOM节点抽象成了一个个的VNode节点，keep-alive组件的缓存也是基于VNode节点的而不是直接存储DOM结构。它将满足条件（pruneCache与pruneCacheEntry）的组件在cache对象中缓存起来，在需要重新渲染的时候再将vnode节点从cache对象中取出并渲染。
