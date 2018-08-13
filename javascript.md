@@ -103,4 +103,10 @@ observer.disconnect();
         microtasks会被循环提取到执行引擎主线程的执行栈，直到microtasks任务队列清空，才会执行macrotask
         【注：一般情况下，macrotask queues 我们会直接称为 task queues，只有 microtask queues 才会特别指明。】
 
-- jQuery获取checkbox的值：低版本jquery中使用attr方法，attr('checked')返回checked，但是在非选中状态会返回undefined，这个不可用；应该使用prop('checked')返回true或者false方法或者.is(':checked')返回true或者false
+- jQuery获取checkbox的值：低版本jquery中使用attr方法，attr('checked')返回checked，但是在非选中状态会返回undefined，这个不可用；应该使用prop('checked') 返回true或者false方法或者 .is(':checked')返回true或者false
+- 截流和防抖
+    - 防抖（debounce）：等待最后一次操作执行完成后间隔一段时间再执行；截流（throttle）：持续触发事件，每隔一段时间只执行一次操作；
+- match方法：str.match（regexp）
+    - 如果传入一个非正则表达式对象，则会隐式的使用new RegExp方法将其转换为一个RegExp。如果未传入任何参数，直接使用match则会得到一个包含空字符串的数组：[""]
+    - 返回值： array，数组第一项是进行匹配完整的字符串，**之后的项是用圆括号捕获的结果**
+  
