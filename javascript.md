@@ -118,3 +118,77 @@ observer.disconnect();
 - 检测数组的方法：value instanceof Array或者 Array.isArray(value)
 - 左值：指的是表达式只能出现在复制运算符的左侧，在javascript中，变量、对象属性和数组元素均是左值。
 - instanceof的左操作数是一个对象，右操作数是一个函数,标识对象的类
+- 函数定义表达式是var a = function (param) {}; 函数声明表达式是function a(param) {},**这里存在一个变量提升问题,函数定义表达式只是变量声明提升，变量初始化仍然在原来的位置；函数声明时函数名和函数体均提前，脚本中的所有函数和函数中所有嵌套的函数都会在当前上下文中其他代码之前声明，也就说，可以在一个javascript函数声明之前调用它**
+- ES6中的class是一种语法糖，它的大部分功能ES5都能实现，新的class写法只是让对象原型的写法更清晰，更像面向对象编程语法，可以看作是构造函数的另外一种写法;
+    - class的数据类型就是function，类本身就是指向构造函数
+    - 在ES6中，构造函数的prototype属性在ES6上的“类”上继续存在，类的所有方法都定义在类的prototype属性上
+    ```javascript
+            class Point() {
+                constructor() {
+                }
+                toString() {
+                }
+                toValue() {
+                }
+            }
+            // 等同于
+            Point.prototype = {
+                constructor() {
+                }
+                toString() {
+                }
+                toValue() {
+                }
+            }
+    ```
+    - prototype对象的constructor属性直接指向“类”本身，这与ES5的行为是一致的。
+    - **类的内部定义的所有方法都是不可枚举的**。比如上面的toString和toValue就是不可枚举的。**这一点与ES5不一致**
+    - constructor是类的默认方法，通过new命令生成对象实例时自动调用该方法，一个类必须有constructor方法，如果没有显示的定义，则会被默认添加
+    - constructor默认返回实例对象（即this），不过完全可以指定另外一个对象。
+    ```javascript
+        class Foo {
+            constructor() {
+                return Obejct.create(null)
+            }
+        }
+    ```
+    - 类必须使用new进行调用，否则会报错。
+    - 类的属性除非显式的定义在其本身（this），否则全部定义在原型上（class）
+    ```javascript
+    class Point {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+        toString() {
+            return '(' + this.x + ', ' + this.y + ')';
+        }
+        }
+        var point = new Point(2, 3);
+        point.toString() // (2, 3)
+        point.hasOwnProperty('x') // true
+        point.hasOwnProperty('y') // true
+        point.hasOwnProperty('toString') // false
+        point.__proto__.hasOwnProperty('toString') // true
+    ```
+    - 上述代码中,x和y都是实例对象point的自身属性，因为定义在this变量上，toString是原型对象的属性，因为定义在Point类上
+    - 类的所有实例共享一个原型对象
+    - Class中不存在变量提升
+    - 与函数表达式一样，也可以使用表达式的形式定义
+    - Class继承：可以通过extends关键字实现继承 class ColorPoint extends Point｛｝
+    ```javascript
+        class ColorPoint extends Point {
+            constructor() {
+                super(x,y) // 调用父类的constructor(x,y)
+                this.color = color;
+            }
+            toString() {
+                return this.color + '' + super.toString(); // 调用父类的toString()
+            }
+        }
+    ```
+    - 上面的代码中，constructor方法和toString方法中，都出现了super关键字，它指代父类的实例（即父类的this对象），子类必须在constructor中调用super方法，否则新建实例会失败，这是因为**子类没有自己的this对象,而是继承了父类的this对象然后对其进行加工，如果不使用super方法，子类就得不到this对象**
+    - ES5的继承实质上是先创造子类的实例对象this，然后再将父类的方法添加到this上（Parent.apply(this)）；ES6是先创造父类的实力对象this，所以必须先调用super方法，然后再用子类的构造函数修改this。（**子类的构造函数中只有先调用super之后才可以使用this关键字**）
+    - 在浏览器对ES5的实现中，每个对象都有一个 __proto__属性指向对应的构造函数的prototype。Class同时具有prototype和__proto__属性，因此存在两条继承链，
+- Map和Set数据结构
+    - Map对象保存键值对，任何值都可以作为一个键或者一个值 new Map([iterable])  其中iterable可以是一个数组或者其他iterable（迭代）对象，其元素或为键值对或为两个元素的数组。
