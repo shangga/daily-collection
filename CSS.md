@@ -67,23 +67,19 @@
 
 -   oppo 手机不支持垂直方向的 flex－direction，小米 2 手机不支持 main 标签，遇到不支持 main 标签的情况应该手动设置 main 标签 display 为 block
 -   linear gradient 渐变： 实际上是浏览器根据 gradient 语法生成图片，由于是 image 所以当 gradient 用在 background 上的时候实际上是写在 background-image 属性
-- background-size: contain; 缩放背景图片完全装入背景区，可能背景区部分空白。background-size: cover; 缩放背景图片以完全装入背景区，可能背景区部分空白。设置为auto的时候，一个auto另一个不是auto的话按照图片比例;支持给多个图片设置图片尺寸，需要提供多个数据，用逗号隔开
+-   background-size: contain; 缩放背景图片完全装入背景区，可能背景区部分空白。background-size: cover; 缩放背景图片以完全装入背景区，可能背景区部分空白。设置为 auto 的时候，一个 auto 另一个不是 auto 的话按照图片比例;支持给多个图片设置图片尺寸，需要提供多个数据，用逗号隔开
 
-- 实现带圆角的渐变色边框
-    1. 外层元素渐变色的背景，并添加padding为需要设置渐变色边框的宽度，用内层元素撑起外层元素
-    2. 使用伪元素 
-    ```css
-        element::after {
-        position: absolute;
-        top: -4px; bottom: -4px;
-        left: -4px; right: -4px;
-        background: linear-gradient(red, blue);
-        content: '';
-        z-index: -1;
-        border-radius: 16px;
-    ```
-}
-树与梦
+-   实现带圆角的渐变色边框 1. 外层元素渐变色的背景，并添加 padding 为需要设置渐变色边框的宽度，用内层元素撑起外层元素 2. 使用伪元素
+    `css element::after { position: absolute; top: -4px; bottom: -4px; left: -4px; right: -4px; background: linear-gradient(red, blue); content: ''; z-index: -1; border-radius: 16px;`
+    }
+
+-   background-size 不同的值
+
+        1.cover：等比例铺满整个区域，如果展示区域与显示区域相差较大的话会有一部分图片显示不出来
+        2.contain：等比例缩放，但是整个背景都会展示出来，按照图片比例展示，会出现白边
+        3.100%： 按照元素尺寸拉伸或者压缩图片铺满整个元素
+
+    树与梦
 
 我站在一棵树下背着  沉重的背包阳光透过树地上洒落着无数的光斑像  曾经的梦想
 
